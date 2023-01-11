@@ -31,8 +31,14 @@ public class MyPlayerMovement : MonoBehaviour
 		 * // best solution, change this radius
          * OR const float k_GroundedRadius = .2f; changed to 0.05f - line 
          * 
-         * Solution: Decrease the ground check radius and check if it works properly (if it still doesn't work decrease it even more). This also might not work if you have kept the game object that checks if touching ground too much below the player.
-           Explanation: The reason why this is not working is that the program is checking for ground at that very split second of the jump since the program is updating too fast the animation check option keeps returning to false. If you decrease the radius of the ground check then by the time the program checks for ground the overlapping circle would have moved away from the ground due to low radius thus not overlapping anymore.
+         * Solution: Decrease the ground check radius and check if it works properly 
+         * (if it still doesn't work decrease it even more). 
+         * This also might not work if you have kept the game object that checks if touching ground too much below the player.
+           Explanation: The reason why this is not working is that the program is checking for ground
+           at that very split second of the jump since the program is updating too fast the animation check option
+           keeps returning to false. If you decrease the radius of the ground check then by the time the program checks 
+           for ground the overlapping circle would have moved away from the ground due to low radius thus not 
+           overlapping anymore.
            Don't add Exit time I know it works but the problem with that is it only works for fully flat ground, suppose you are jumping to a level higher than you then the sprite would be touching ground before the exit time is over thus remaining in jump animation for more time in spite of touching ground
          */
         if (Input.GetButtonDown("Jump")) {
