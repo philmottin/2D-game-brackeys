@@ -6,7 +6,7 @@ public class Weapon : MonoBehaviour
 {
     public Transform firePoint;
     public GameObject bulletPrefab;
-    public Animator animator;
+  //  public Animator animator;
     public int damage = 40;
     public GameObject raycastImpactEffect;
     public LineRenderer line;
@@ -31,12 +31,12 @@ public class Weapon : MonoBehaviour
     }
 
     void Shoot() {
-        animator.SetTrigger("Shoot");
+       // animator.SetTrigger("Shoot");
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
     }
 
     IEnumerator ShootRaycast() {
-        animator.SetTrigger("Shoot");
+       // animator.SetTrigger("Shoot");
         RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right);
         
 
