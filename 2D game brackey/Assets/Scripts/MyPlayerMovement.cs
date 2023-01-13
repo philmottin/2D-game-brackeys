@@ -60,6 +60,8 @@ public class MyPlayerMovement : MonoBehaviour
     }
 
     void FixedUpdate() {
+       // Debug.Log("horizontalMove: "+ horizontalMove);
+
         controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
         jump = false;
     }

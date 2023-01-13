@@ -112,6 +112,8 @@ public class CharacterController2D : MonoBehaviour
 				}
 			}
 
+			//Debug.Log("move:"+ move);
+			
 			// Move the character by finding the target velocity
 			Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
 			// And then smoothing it out and applying it to the character
@@ -145,13 +147,28 @@ public class CharacterController2D : MonoBehaviour
 		// Switch the way the player is labelled as facing.
 		m_FacingRight = !m_FacingRight;
 
+
+		// Method #1
 		transform.Rotate(0f, 180f, 0f);
 
+		// Method #2
 		/*
 		// Multiply the player's x local scale by -1.
 		Vector3 theScale = transform.localScale;
 		theScale.x *= -1;
 		transform.localScale = theScale;
 		*/
+
+		// Method #3
+		/*
+		Vector3 flipped = transform.localScale;
+		flipped.z *= -1f;
+		transform.localScale = flipped;
+		transform.Rotate(0f, 180f, 0f);
+		*/
+
+		// Method #4
+		// flip in sprite renderer
+
 	}
 }
