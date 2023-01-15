@@ -2,19 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterMovement_TopDownShooting : MonoBehaviour
+public class SpriteMovement_TopDownShooting : MonoBehaviour
 {
     public float moveSpeed = 5f;
-
     public Rigidbody2D rb;
-    public Camera cam;
-
     Vector2 movement;
-    Vector2 mousePos;
-
-
-    
-
+    public Animator animator;
 
     // Update is called once per frame
     void Update()
@@ -22,13 +15,18 @@ public class CharacterMovement_TopDownShooting : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
-        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+        animator.SetFloat("Horizontal", movement.x);
+        animator.SetFloat("Vertical", movement.y);
+        animator.SetFloat("Speed", movement.sqrMagnitude);
+
+        if (movement.x != 0 || movement.y != 0) {
+            animator.SetFloat("LastHorizontal", movement.x);
+            animator.SetFloat("LastVertical", movement.y);
+        }
+
     }
 
     private void FixedUpdate() {
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
-        Vector2 lookDir = mousePos - rb.position;
-        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
-        rb.rotation = angle;
     }
 }
