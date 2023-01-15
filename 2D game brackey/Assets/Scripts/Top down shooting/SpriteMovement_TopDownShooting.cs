@@ -9,6 +9,8 @@ public class SpriteMovement_TopDownShooting : MonoBehaviour
     Vector2 movement;
     public Animator animator;
 
+    public Transform interactor;
+
     // Update is called once per frame
     void Update()
     {
@@ -23,6 +25,15 @@ public class SpriteMovement_TopDownShooting : MonoBehaviour
             animator.SetFloat("LastHorizontal", movement.x);
             animator.SetFloat("LastVertical", movement.y);
         }
+
+        if (movement.x > 0)
+            interactor.localRotation = Quaternion.Euler(0, 0, 90);
+        if (movement.x < 0)
+            interactor.localRotation = Quaternion.Euler(0, 0, -90);
+        if (movement.y > 0)
+            interactor.localRotation = Quaternion.Euler(0, 0, 180);
+        if (movement.y < 0)
+            interactor.localRotation = Quaternion.Euler(0, 0, 0);
 
     }
 
